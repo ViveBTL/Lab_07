@@ -22,47 +22,50 @@ void saveToFile(const std::string& filename, const Groups& groups) {
 
 Score scoreFromString(const std::string& s)
 {
-    if (s == "Unsatisfactorily") return Unsatisfactorily;
-    if (s == "Satisfactorily")   return Satisfactorily;
-    if (s == "Good")             return Good;
-    if (s == "Excellent")        return Excellent;
+    if (s == "2") return Unsatisfactorily;
+    if (s == "3")   return Satisfactorily;
+    if (s == "4")             return Good;
+    if (s == "5")        return Excellent;
 }
 
 void loadFromFile(const std::string& filename, Groups& outGroups) {
+    std::string group, subject, line;
     std::ifstream in(filename);
-    std::string group, subject, score, line;
-    
-    
     
     if (in.is_open()) {
-        while (std::getline(in, group)) // группа
-        {
-            std::vector<Student> students; // перезапись группы
 
-            while (std::getline(in, line) && line != "@END_GROUP") {
+        std::string currentGroup;
 
-                Student student; // перезапись студента
-
-                student.Name = line; // имя
-
-                std::getline(in, line);
-                student.Year = std::stoi(line); // год
-
-                while (std::getline(in, subject) &&
-                            std::getline(in, score) && subject != "@END_SUBJECTS")
-                {   
-                    student.RecordBook[subject] = scoreFromString(score); // зачетка
-
-                }
-
-                students.push_back(student);
-
-            }
-
-            outGroups[group] = students;
+        while (std::getline(in, line)) {
+            if (line.empty()) continue;
+                                    
+                currentGroup = line;
+                outGroups[currentGroup] = std::vector<Student>();
             
+            
+                while (std::getline(in, line) && line != "@END_GROUP") {
+                    
+
+                    Student student;
+                    student.Name = line;
+
+                    // Год обучения
+                    std::getline(in, line);
+                    student.Year = std::stoi(line);
+
+
+                    // Читаем предметы и оценки
+                    while (std::getline(in, line) && line != "@END_SUBJECTS") {
+                        std::string subject = line;
+
+                        std::getline(in, line);
+                        student.RecordBook[subject] = scoreFromString(line);
+                    }
+                    outGroups[currentGroup].push_back(student);
+                }               
         }
     }
-
     in.close();
-}
+}    
+
+

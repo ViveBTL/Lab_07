@@ -1,3 +1,6 @@
+#ifndef HEADER_HPP
+#define HEADER_HPP
+
 #include <string>
 #include <vector>
 #include <iostream>
@@ -11,13 +14,10 @@ struct Book
     int Year;
 };
 
-
 void saveToFile(const std::string& filename, const std::vector<std::string>& data);
-
 void loadFromFile(const std::string& filename, std::vector<std::string>& outData);
 
 void saveToFile(const std::string& filename, const std::vector<Book>& data);
-
 void loadFromFile(const std::string& filename, std::vector<Book>& outData);
 
 enum Score
@@ -35,10 +35,9 @@ struct Student
     std::map<std::string, Score> RecordBook;
 };
 
-// в качестве ключа - название группы
-// в качестве значения - список студентов
 using Groups = std::map<std::string, std::vector<Student>>;
 
 void saveToFile(const std::string& filename, const Groups& groups);
+void loadFromFile(const std::string& filename, Groups& outGroups);
 
-void loadFromFile(const std::string& filename, const Groups& outGroups);
+#endif
