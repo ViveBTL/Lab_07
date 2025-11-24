@@ -1,0 +1,53 @@
+GroupA
+Ivan Petrov
+1
+Informatics
+5
+Mathematics
+4
+@END_SUBJECTS
+Sergey Ivanov
+1
+Informatics
+4
+Mathematics
+3
+@END_SUBJECTS
+Anna Smirnova
+2
+Informatics
+5
+Mathematics
+5
+@END_SUBJECTS
+@END_GROUP
+GroupB
+Pavel Kozlov
+2
+Informatics
+4
+Mathematics
+4
+@END_SUBJECTS
+Olga Fedorova
+3
+Informatics
+3
+Mathematics
+4
+@END_SUBJECTS
+Nikita Morozov
+3
+Informatics
+5
+Mathematics
+3
+@END_SUBJECTS
+Maria Volkova
+1
+Informatics
+4
+Mathematics
+5
+@END_SUBJECTS
+@END_GROUP
